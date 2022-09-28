@@ -6,7 +6,7 @@ A janky nvim configuration repo
 Install all the necessaries:
 ```bash
 # Install nvim
-sudo apt install nvim
+sudo apt install neovim
 
 # Install this repo
 git clone git@github.com:jonathanvanschenck/janky-nvim.git ~/.config/nvim
