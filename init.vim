@@ -5,9 +5,8 @@ Plug 'preservim/nerdtree'
 
 Plug 'Yggdroot/indentLine'
 
+let g:polyglot_disabled = ['markdown']
 Plug 'sheerun/vim-polyglot'
-" Plug 'pangloss/vim-javascript'
-" Plug 'vim-python/python-syntax'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -25,7 +24,6 @@ filetype off
 set number
 set relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
 set nohlsearch
 
 " Folds
