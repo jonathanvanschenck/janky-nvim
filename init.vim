@@ -14,6 +14,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 
@@ -116,7 +118,7 @@ let g:ftplugin_sql_omni_key = '<C-q>'
 
 
 " Corrections
-nmap <C-T> :tabe 
+nmap <C-T> :tabe
 " Screen motion - move faster
 noremap <C-e> 10<C-e>
 noremap <C-y> 10<C-y>
@@ -134,7 +136,7 @@ noremap <C-RIGHT> <C-W>>
 noremap <C-UP> <C-W>+
 noremap <C-DOWN> <C-W>-
 " In visual line mode, it is easy to press J not j,
-"  but J is irritatingly maped to "join lines", 
+"  but J is irritatingly maped to "join lines",
 "  which is almost never what I want to do. So just
 "  map J to j in visual mode. If I want to "join lines"
 "  I can just use gJ in visual mode which does the same
@@ -142,3 +144,5 @@ noremap <C-DOWN> <C-W>-
 "  mode to gJ!
 vnoremap J j
 vnoremap K k
+
+nnoremap <leader>b o<ESC>!!bsw
