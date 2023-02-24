@@ -8,11 +8,14 @@ Install all the necessaries:
 # Install nvim
 sudo apt install neovim
 
-# Install this repo
-git clone git@github.com:jonathanvanschenck/janky-nvim.git ~/.config/nvim
+# Install this repo (HTTPS)
+git clone https://github.com/jonathanvanschenck/janky-nvim.git ~/.config/nvim
 
 # Install `plug.vim`
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Install plugins
+nvim --headless +PlugInstall +qall
 ```
 
 Then install all the plugins using `:PlugInstall` from inside `nvim`
