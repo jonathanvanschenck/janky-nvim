@@ -44,8 +44,8 @@ let g:oscyank_silent     = 0  " disable message on successful copy
 let g:oscyank_trim       = 1  " trim surrounding whitespaces before copy
 let g:oscyank_osc52      = "\x1b]52;c;%s\x07"  " the OSC52 format string to use
 autocmd TextYankPost *
-    \ if v:event.operator is 'y' && v:event.regname is '+' |
-    \ execute 'OSCYankRegister +' |
+    \ if v:event.operator is 'y' && v:event.regname is '' |
+    \ execute 'OSCYankRegister ' |
     \ endif
 
 " Indenting
