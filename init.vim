@@ -5,6 +5,8 @@ Plug 'preservim/nerdtree'
 
 Plug 'Yggdroot/indentLine'
 
+Plug 'ojroques/vim-oscyank'
+
 let g:polyglot_disabled = ['markdown']
 Plug 'sheerun/vim-polyglot'
 
@@ -13,6 +15,7 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+
 
 Plug 'github/copilot.vim'
 
@@ -34,6 +37,16 @@ set foldlevelstart=99
 
 " Copying
 set clipboard=unnamedplus
+nmap <leader>c <Plug>OSCYankOperator
+vmap <leader>c <Plug>OSCYankVisual
+let g:oscyank_max_length = 0  " maximum length of a selection
+let g:oscyank_silent     = 0  " disable message on successful copy
+let g:oscyank_trim       = 1  " trim surrounding whitespaces before copy
+let g:oscyank_osc52      = "\x1b]52;c;%s\x07"  " the OSC52 format string to use
+autocmd TextYankPost *
+    \ if v:event.operator is 'y' && v:event.regname is '+' |
+    \ execute 'OSCYankRegister +' |
+    \ endif
 
 " Indenting
 set autoindent
@@ -146,3 +159,4 @@ vnoremap J j
 vnoremap K k
 
 nnoremap <leader>b o<ESC>!!bsw
+
