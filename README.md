@@ -48,3 +48,13 @@ Consider making nvim your default git editor tool. Add this to your `.gitconfig`
 [core]
 	editor = nvim
 ```
+
+
+## Setup on Debian 11
+Debian 11 is on nvim 0.4.4, which is too old for the osc52 library, so here's a backup strat for installing the newest stable:
+```
+sudo apt remove neovim neovim-runtime
+curl -L https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.deb > nvim-linux64.deb
+sudo apt install ./nvim-linux64.deb
+nvim --headless +PlugInstall +qall
+```
