@@ -9,6 +9,7 @@ Plug 'ojroques/vim-oscyank'
 
 let g:polyglot_disabled = ['markdown']
 Plug 'sheerun/vim-polyglot'
+Plug 'fladson/vim-kitty'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -159,4 +160,6 @@ vnoremap J j
 vnoremap K k
 
 nnoremap <leader>b o<ESC>!!bsw
+
+nnoremap <leader>c :%s/[[:space:]]\+$//e<CR>
 
