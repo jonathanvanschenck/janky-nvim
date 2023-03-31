@@ -23,6 +23,7 @@ let s:comment_map = {
     \   "ahk": ';',
     \   "vim": '"',
     \   "tex": '%',
+    \   "sql": '--',
     \ }
 
 function ToggleComment( multiline )
