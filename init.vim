@@ -163,3 +163,9 @@ nnoremap <leader>b o<ESC>!!bsw
 
 nnoremap <leader>c :%s/[[:space:]]\+$//e<CR>
 
+" Add extra filetypes
+augroup filetypedetect
+    " Mustache is html
+    au! BufRead,BufNewFile *.mustache set filetype=html
+    au! BufRead,BufNewFile *.mu set filetype=html
+augroup END
