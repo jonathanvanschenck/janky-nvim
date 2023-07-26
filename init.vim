@@ -18,7 +18,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 
 
-Plug 'github/copilot.vim'
+" Turn this off for now....
+" Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -30,6 +31,7 @@ filetype off
 set number
 set relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+highlight Normal guibg=NONE ctermbg=NONE
 set nohlsearch
 
 " Folds
@@ -169,3 +171,4 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.mustache set filetype=html
     au! BufRead,BufNewFile *.mu set filetype=html
 augroup END
+
