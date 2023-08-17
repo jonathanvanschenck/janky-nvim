@@ -24,6 +24,7 @@ let s:comment_map = {
     \   "vim": '"',
     \   "tex": '%',
     \   "sql": '--',
+    \   "icinga2": '\/\/',
     \ }
 
 function ToggleComment( multiline )
