@@ -31,9 +31,9 @@ export EDITOR="nvim"
 ### Aliases
 Consider aliasing nvim over vim. Add this to your `.bash_aliases`
 ```
-alias vim='nvim'
+alias vim='nvim -p'      # multi-open in tabs by default
 alias vimdiff='nvim -d'
-alias svim='sudoedit' # this should be set to nvim in .bashrc
+alias svim='sudoedit'    # this should be set to nvim in .bashrc
 ```
 
 ### Git

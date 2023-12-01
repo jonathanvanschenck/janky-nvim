@@ -170,6 +170,6 @@ augroup filetypedetect
     " Mustache is html
     au! BufRead,BufNewFile *.mustache set filetype=html
     au! BufRead,BufNewFile *.mu set filetype=html
-    au! BufRead,BufNewFile /*etc/icinga2/*.conf,/*usr/share/icinga2/include/{itl,plugins,*.conf} set filetype=icinga2
+    au! BufRead,BufNewFile icinga/*.conf,/*etc/icinga2/*.conf,/*usr/share/icinga2/include/{itl,plugins,*.conf} set filetype=icinga2
 augroup END
 
