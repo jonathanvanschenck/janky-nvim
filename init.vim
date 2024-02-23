@@ -33,13 +33,18 @@ call plug#end()
 
 " Views
 syntax on
+
+" Colors, but with no backround in editor
 color mp-hack
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE
+highlight Normal ctermbg=NONE
+highlight SignColumn ctermbg=NONE
+
 filetype off
 set number
 set relativenumber
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-highlight Normal guibg=NONE ctermbg=NONE
 set nohlsearch
+
 
 " leader
 let g:mapleader = " "
@@ -140,7 +145,7 @@ let g:ftplugin_sql_omni_key = '<C-q>'
 
 
 " Corrections
-nmap <C-T> :tabe
+" nmap <C-T> :tabe
 " Screen motion - move faster
 noremap <C-e> 10<C-e>
 noremap <C-y> 10<C-y>
@@ -201,15 +206,20 @@ nnoremap <leader>gs <cmd>Git<cr>
 lua << EOF
 require('gitsigns').setup({
     signs = {
-        add          = { text = '│' },
-        change       = { text = '│' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '┆' },
-    } 
+        add          = { text = '│+' },
+        change       = { text = '│-' },
+        delete       = { text = '__' },
+        topdelete    = { text = '‾‾' },
+        changedelete = { text = '│~' },
+        untracked    = { text = '-┆' },
+    }
 })
 EOF
+" Fix colors to be more muted
+hi DiffAdd               cterm=bold ctermfg=22 ctermbg=None
+hi DiffChange            cterm=bold ctermfg=185 ctermbg=None
+hi GitSignsChangedelete  cterm=underline,bold ctermfg=197 ctermbg=None
+hi DiffDelete            cterm=bold ctermfg=197 ctermbg=52
 
 " Fire up treesitter
 " lua require'nvim-treesitter.configs'.setup{highlight={enable=true}}
