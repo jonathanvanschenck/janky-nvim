@@ -5,8 +5,22 @@ A janky nvim configuration repo
 
 Install all the necessaries:
 ```bash
+# Install dependancies
+sudo apt install ripgrep
+
 # Install nvim
-sudo apt install neovim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+
+# Install locally:
+mkdir -p ~/.local/bin
+mv nvim.appimage ~/.local/bin/nvim
+
+# Install globally
+sudo mkdir -p /opt/nvim
+sudo mv nvim.appimage /opt/nvim/nvim
+echo 'export PATH="$PATH:/opt/nvim/"' >> ~/.bashrc
+
 
 # Install this repo (HTTPS)
 git clone https://github.com/jonathanvanschenck/janky-nvim.git ~/.config/nvim

@@ -5,17 +5,24 @@ Plug 'preservim/nerdtree'
 
 Plug 'Yggdroot/indentLine'
 
+"
 Plug 'ojroques/vim-oscyank'
 
+" Syntax
 let g:polyglot_disabled = ['markdown']
 Plug 'sheerun/vim-polyglot'
 Plug 'fladson/vim-kitty'
 
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mileszs/ack.vim'
+" Git tools
+Plug 'tpope/vim-fugitive'
+Plug 'lewis6991/gitsigns.nvim', { 'tag': 'v0.7' }
+
+" telescope fuzzy finder
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' } 
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 
 
 " Turn this off for now....
@@ -33,6 +40,9 @@ set relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 highlight Normal guibg=NONE ctermbg=NONE
 set nohlsearch
+
+" leader
+let g:mapleader = " "
 
 " Folds
 set foldmethod=indent
@@ -107,10 +117,6 @@ hi SpellBad cterm=underline
 set path+=**
 set wildignore+=*/.git/*,*/node_modules/*,*/env/*,*.swp,*.zip,*.so,*/tmp/*
 set wildmenu
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_map = '<c-f>'
-" let g:ackgrp = 'ag --vimgrep'
-nnoremap <Leader>ag :Ack!<Space>
 
 " Highlighing
 let g:javascript_plugin_jsdoc = 1
@@ -173,3 +179,37 @@ augroup filetypedetect
     au! BufRead,BufNewFile icinga/*.conf,/*etc/icinga2/*.conf,/*usr/share/icinga2/include/{itl,plugins,*.conf} set filetype=icinga2
 augroup END
 
+" Turn off all mouse interactions
+set mouse=
+
+" Telescope configuration
+nnoremap <leader>to <cmd>Telescope find_files theme=dropdown<cr>
+nnoremap <leader>t* <cmd>Telescope grep_string theme=dropdown<cr>
+nnoremap <leader>tf <cmd>Telescope live_grep theme=dropdown<cr>
+nnoremap <leader>tb <cmd>Telescope buffers theme=dropdown<cr>
+nnoremap <leader>th <cmd>Telescope help_tags theme=dropdown<cr>
+nnoremap <leader>tM <cmd>Telescope man_pages theme=dropdown<cr>
+nnoremap <leader>tm <cmd>Telescope marks theme=dropdown<cr>
+nnoremap <leader>tj <cmd>Telescope jumplist theme=dropdown<cr>
+
+" Fugitive setup
+nnoremap <leader>gs <cmd>Git<cr>
+
+
+
+" gitsigns
+lua << EOF
+require('gitsigns').setup({
+    signs = {
+        add          = { text = '│' },
+        change       = { text = '│' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
+    } 
+})
+EOF
+
+" Fire up treesitter
+" lua require'nvim-treesitter.configs'.setup{highlight={enable=true}}
