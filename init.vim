@@ -105,10 +105,16 @@ inoremap <C-b> <ESC>:call<space>g:OpenBrackets()<CR>
 
 " Comments
 source ~/.config/nvim/scripts/vcomments.vim
-" For some reason, '<C-_>' is 'ctrl+/'
-nnoremap <C-_> :call ToggleComment(0)<CR>
-inoremap <C-_> <esc> :call ToggleComment(0)<CR>gi
-xnoremap <C-_> <esc> :call ToggleComment(1)<CR>
+if has('nvim-0.9')
+    nnoremap <C-/> :call ToggleComment(0)<CR>
+    inoremap <C-/> <esc> :call ToggleComment(0)<CR>gi
+    xnoremap <C-/> <esc> :call ToggleComment(1)<CR>
+else
+    " For some reason, '<C-_>' is 'ctrl+/'
+    nnoremap <C-_> :call ToggleComment(0)<CR>
+    inoremap <C-_> <esc> :call ToggleComment(0)<CR>gi
+    xnoremap <C-_> <esc> :call ToggleComment(1)<CR>
+endif
 
 
 " Spelling
