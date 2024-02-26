@@ -195,17 +195,17 @@ set mouse=
 
 " Telescope configuration
 nnoremap <leader>to <cmd>Telescope find_files theme=dropdown<cr>
-nnoremap <leader>t* <cmd>Telescope grep_string theme=dropdown<cr>
-nnoremap <leader>tf <cmd>Telescope live_grep theme=dropdown<cr>
+nnoremap <leader>t* <cmd>lua require('telescope.builtin').grep_string(require('telescope.themes').get_dropdown{layout_config = {height = 0.6, width = 0.7}})<cr>
+nnoremap <leader>tf <cmd>lua require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown{layout_config = {height = 0.6, width = 0.7}})<cr>
 nnoremap <leader>tb <cmd>Telescope buffers theme=dropdown<cr>
 nnoremap <leader>th <cmd>Telescope help_tags theme=dropdown<cr>
 nnoremap <leader>tM <cmd>Telescope man_pages theme=dropdown<cr>
-nnoremap <leader>tm <cmd>Telescope marks theme=dropdown<cr>
-nnoremap <leader>tj <cmd>Telescope jumplist theme=dropdown<cr>
+nnoremap <leader>tm <cmd>lua require('telescope.builtin').marks(require('telescope.themes').get_dropdown{layout_config = {height = 0.5, width = 0.6}})<cr>
+nnoremap <leader>tj <cmd>lua require('telescope.builtin').jumplist(require('telescope.themes').get_dropdown{layout_config = {height = 0.5, width = 0.6}})<cr>
 
 " Fugitive setup
-nnoremap <leader>gs <cmd>Git<cr>
-
+nnoremap <leader>gs <cmd>tab Git<cr>
+nnoremap <leader>gd <cmd>Gdiffsplit<cr>
 
 
 " gitsigns
@@ -213,19 +213,20 @@ lua << EOF
 require('gitsigns').setup({
     signs = {
         add          = { text = '│+' },
-        change       = { text = '│-' },
-        delete       = { text = '__' },
-        topdelete    = { text = '‾‾' },
+        change       = { text = '│»' },
+        delete       = { text = '⌄⌄' },
+        topdelete    = { text = '⌃⌃' },
         changedelete = { text = '│~' },
         untracked    = { text = '-┆' },
     }
 })
 EOF
 " Fix colors to be more muted
-hi DiffAdd               cterm=bold ctermfg=22 ctermbg=None
-hi DiffChange            cterm=bold ctermfg=185 ctermbg=None
+hi GitSignsAdd               cterm=bold ctermfg=70 ctermbg=None
+hi GitSignsChange            cterm=bold ctermfg=185 ctermbg=None
 hi GitSignsChangedelete  cterm=underline,bold ctermfg=197 ctermbg=None
-hi DiffDelete            cterm=bold ctermfg=197 ctermbg=52
+hi GitSignsDelete            cterm=bold ctermfg=197 ctermbg=52
+set signcolumn=yes
 
 " Fire up treesitter
 " lua require'nvim-treesitter.configs'.setup{highlight={enable=true}}
