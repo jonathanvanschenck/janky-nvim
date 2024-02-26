@@ -50,6 +50,15 @@ alias vimdiff='nvim -d'
 alias svim='sudoedit'    # this should be set to nvim in .bashrc
 ```
 
+Also consider adding these really nice shortcuts for `vim-fugitive`
+```
+alias gc='git checkout'
+alias gs='vim "+Git | only" "+normal i"'
+alias gl='vim "+Git log | only"'
+alias gd='_rando() { vim "+Gvdiffsplit $2" $1; }; _rando'
+alias gb='vim "+Git blame -C -C -C" "+normal A"'
+```
+
 ### Git
 Consider making nvim your default git editor tool. Add this to your `.gitconfig`
 ```
