@@ -44,6 +44,7 @@ filetype off
 set number
 set relativenumber
 set nohlsearch
+set scrolloff=5
 
 
 " leader
