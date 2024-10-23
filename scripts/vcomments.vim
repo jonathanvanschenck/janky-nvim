@@ -9,6 +9,8 @@ let s:comment_map = {
     \   "php": '\/\/',
     \   "python": '#',
     \   "ruby": '#',
+    \   "hcl": '#',
+    \   "terraform": '#',
     \   "rust": '\/\/',
     \   "sh": '#',
     \   "desktop": '#',
@@ -17,6 +19,7 @@ let s:comment_map = {
     \   "profile": '#',
     \   "bashrc": '#',
     \   "bash_profile": '#',
+    \   "lilypond": '%',
     \   "mail": '>',
     \   "eml": '>',
     \   "bat": 'REM',
@@ -26,6 +29,7 @@ let s:comment_map = {
     \   "sql": '--',
     \   "icinga2": '\/\/',
     \   "yaml": '#',
+    \   "zig": '\/\/',
     \ }
 
 function ToggleComment( multiline )

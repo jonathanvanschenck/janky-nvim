@@ -185,10 +185,17 @@ nnoremap <leader>c :%s/[[:space:]]\+$//e<CR>
 
 " Add extra filetypes
 augroup filetypedetect
+    au! BufRead,BufNewFile *.ly set filetype=lilypond
+    au! BufRead,BufNewFile *.kbd set filetype=kanata
     " Mustache is html
     au! BufRead,BufNewFile *.mustache set filetype=html
     au! BufRead,BufNewFile *.mu set filetype=html
     au! BufRead,BufNewFile icinga/*.conf,/*etc/icinga2/*.conf,/*usr/share/icinga2/include/{itl,plugins,*.conf} set filetype=icinga2
+
+    au! BufRead,BufNewFile *.hcl,*.tfbackend set filetype=hcl
+    au! BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl
+    au! BufRead,BufNewFile *.tf,*.tfvars,*.tftest.hcl set filetype=terraform
+    au! BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json
 augroup END
 
 " Turn off all mouse interactions
