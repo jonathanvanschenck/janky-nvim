@@ -28,6 +28,10 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 " Turn this off for now....
 " Plug 'github/copilot.vim'
 
+" Let's use an lsp
+Plug 'neovim/nvim-lspconfig'
+Plug 'pmizio/typescript-tools.nvim'
+
 call plug#end()
 
 
@@ -238,3 +242,28 @@ set signcolumn=yes
 
 " Fire up treesitter
 " lua require'nvim-treesitter.configs'.setup{highlight={enable=true}}
+
+
+
+" LSP
+lua << EOF
+require("typescript-tools").setup {}
+
+vim.api.nvim_create_autocmd("LspAttach", {
+
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
+});
+
+EOF
+" require'lspconfig'.tsserver.setup{}
+
+
+" Add remaps for jump to def
+noremap <C-]> :lua vim.lsp.buf.definition()<CR>
+noremap <leader>h :lua vim.lsp.buf.hover()<CR>
+
+" Telescope commands for lsp
+nnoremap <leader>tr <cmd>lua require('telescope.builtin').lsp_references(require('telescope.themes').get_dropdown{layout_config = {height = 0.6, width = 0.7}})<cr>
