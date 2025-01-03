@@ -48,6 +48,12 @@ alias gl='vim "+Git log --decorate | only"'
 alias gd='_rando() { vim "+Gvdiffsplit $2" $1; }; _rando'
 alias gb='vim "+Git blame -C -C -C" "+normal A"'
 ```
+### TS LSP
+Consider installing typescript server for language support
+```
+npm install -g typescript-language-server typescript
+```
+
 
 ### Git
 Consider making nvim your default git editor tool. Add this to your `.gitconfig`
