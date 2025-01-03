@@ -185,24 +185,41 @@ vnoremap K k
 
 nnoremap <leader>b o<ESC>!!bsw
 
-nnoremap <leader>c :%s/[[:space:]]\+$//e<CR>
+" Trim terminal spaces
+nnoremap <leader>ds :%s/[[:space:]]\+$//e<CR>
+
+" Trim the last charater off the end of a line
+nnoremap <leader>de $"_x
+" Change the last character
+nnoremap <leader>re $"_r
 
 " Add extra filetypes
 augroup filetypedetect
+    " Lilypond
     au! BufRead,BufNewFile *.ly set filetype=lilypond
+    
+    " Kanata
     au! BufRead,BufNewFile *.kbd set filetype=kanata
+
     " Mustache is html
     au! BufRead,BufNewFile *.mustache set filetype=html
     au! BufRead,BufNewFile *.mu set filetype=html
+
+    " Icing
     au! BufRead,BufNewFile icinga/*.conf,/*etc/icinga2/*.conf,/*usr/share/icinga2/include/{itl,plugins,*.conf} set filetype=icinga2
 
+    " Terraform
     au! BufRead,BufNewFile *.hcl,*.tfbackend set filetype=hcl
     au! BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl
     au! BufRead,BufNewFile *.tf,*.tfvars,*.tftest.hcl set filetype=terraform
     au! BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json
+
+    " Jenkinsfile
+    au! BufRead,BufNewFile Jenkinsfile*,*.jenkinsfile set filetype=Jenkinsfile
+
 augroup END
 
-" Turn off all mouse interactions
+" Turn off all mouse interactions. Like, what the heck do you think this is, vscode?
 set mouse=
 
 " Telescope configuration
@@ -221,22 +238,11 @@ nnoremap <leader>gd <cmd>Gdiffsplit<cr>
 
 
 " gitsigns
-lua << EOF
-require('gitsigns').setup({
-    signs = {
-        add          = { text = '│+' },
-        change       = { text = '│»' },
-        delete       = { text = '⌄⌄' },
-        topdelete    = { text = '⌃⌃' },
-        changedelete = { text = '│~' },
-        untracked    = { text = '-┆' },
-    }
-})
-EOF
+lua require('gitsigns-init')
 " Fix colors to be more muted
 hi GitSignsAdd               cterm=bold ctermfg=70 ctermbg=None
 hi GitSignsChange            cterm=bold ctermfg=185 ctermbg=None
-hi GitSignsChangedelete  cterm=underline,bold ctermfg=197 ctermbg=None
+hi GitSignsChangedelete      cterm=underline,bold ctermfg=197 ctermbg=None
 hi GitSignsDelete            cterm=bold ctermfg=197 ctermbg=52
 set signcolumn=yes
 
@@ -245,21 +251,8 @@ set signcolumn=yes
 
 
 
-" LSP
-lua << EOF
-require("typescript-tools").setup {}
-
-vim.api.nvim_create_autocmd("LspAttach", {
-
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    client.server_capabilities.semanticTokensProvider = nil
-  end,
-});
-
-EOF
-" require'lspconfig'.tsserver.setup{}
-
+" LSP init
+lua require('lsp-init')
 
 " Add remaps for jump to def
 noremap <C-]> :lua vim.lsp.buf.definition()<CR>
