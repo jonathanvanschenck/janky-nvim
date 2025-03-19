@@ -1,8 +1,6 @@
 " Plugins
 call plug#begin("~/.config/nvim/plugged")
 
-Plug 'preservim/nerdtree'
-
 Plug 'Yggdroot/indentLine'
 
 "
@@ -138,17 +136,6 @@ set wildmenu
 let g:javascript_plugin_jsdoc = 1
 let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
-
-
-" Nerdtree
-let g:NERDTreeWinSize=25
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    \ quit | endif
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-autocmd BufWinEnter * silent NERDTreeMirror
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
 
 
 " stop sql plugin from remaping <C-c>
