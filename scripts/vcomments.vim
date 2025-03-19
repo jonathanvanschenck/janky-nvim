@@ -55,13 +55,13 @@ function ToggleComment( multiline )
         let l:idx += 1
         let l:has_comment = l:has_comment && (match(
           \   getline(l:idx),
-          \   "^\\s\\{" . l:ws_num . "\\}" . l:com_char . "\\s"
+          \   "^\\s\\{" . l:ws_num . "\\}" . l:com_char . "\\s\\?"
           \ )>-1)
       endwhile
       
       if l:has_comment == 1
         " remove comments from all lines
-        let l:regex = "s/^\\(\\s*\\)" . l:com_char . " /\\1/"
+        let l:regex = "s/^\\(\\s*\\)" . l:com_char . " \\?/\\1/"
       else
         " add comment to all lines
         let l:regex = "s/^\\(\\s\\{" . l:ws_num . "\\}\\)/\\1" . l:com_char . " /" 
@@ -77,8 +77,8 @@ function ToggleComment( multiline )
     else
       let l:line = line(".")
       " apply appropriate replacements for the singular line:
-      if getline(l:line) =~ "^\\s*" . l:com_char . "\\s"
-        execute "silent " . l:line . "s/^\\(\\s*\\)" . l:com_char . "\\s/\\1/"
+      if getline(l:line) =~ "^\\s*" . l:com_char . "\\s\\?"
+        execute "silent " . l:line . "s/^\\(\\s*\\)" . l:com_char . "\\s\\?/\\1/"
       else
         execute "silent " . l:line . "s/^\\(\\s*\\)/\\1" . l:com_char ." /"
       endif
